@@ -54,3 +54,9 @@ WHERE Feb.Quantity>2
 AND length(orderid) = 6
 AND orderid <> 'Order ID'
 
+#8. Which orders were places between 02/13/2019 and 02/18/2019 during the month of February?
+SELECT orderdate
+FROM BIT_DB.FebSales
+WHERE orderdate between '02/13/19 00:00' AND '02/18/19 00:00'
+
+
