@@ -27,3 +27,5 @@ time_signature integer NOT NULL
 #Then I inserted the Spotify Data .csv into the table.
 
 #Next, I explored the data using the following SQL. 
+
+1-What are the 10 most popular tracks in the database?
