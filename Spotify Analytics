@@ -28,4 +28,23 @@ time_signature integer NOT NULL
 
 #Next, I explored the data using the following SQL. 
 
-1-What are the 10 most popular tracks in the database?
+#1-What are the 10 most popular tracks in the database?
+
+SELECT artist_name, track_name,popularity
+from bit_db.Spotifydata
+order by popularity desc
+limit 10
+
+#2-what are the 5 songs with highest liveness score?
+
+SELECT artist_name, track_name,liveness
+from bit_db.Spotifydata
+order by liveness desc
+limit 5
+
+#3-what songs have a popularity less than 85%
+#4-what are 10 the more dancable tracks?
+#5-what is the average lenght of tracks?
+#6-which artist has more songs?
+
+6-
