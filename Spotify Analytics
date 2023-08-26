@@ -66,5 +66,12 @@ limit 10
 SELECT avg (duration_ms)
 from bit_db.Spotifydata
 
-#6-which artist has more songs ?
+#6-which artists has more songs in the listing of top 50 in Spotify?
+
+SELECT artist_name, count(track_name)
+from bit_db.Spotifydata
+group by artist_name
+order by count(track_name) DESC
+
+
 
