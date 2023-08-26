@@ -1,4 +1,8 @@
 # For this project, I downloaded Spotify data from Kaggle.
+
+The data is about 50 most listened songs in the world for year 2021 in Spotify. 
+This dataset has 14 descriptive variables about the songs.
+
 # Then I created a table to insert Spotify data into.
 # Finally, I performed analytics on the data using SQL. 
 
@@ -42,9 +46,25 @@ from bit_db.Spotifydata
 order by liveness desc
 limit 5
 
-#3-what songs have a popularity less than 85%
-#4-what are 10 the more dancable tracks?
-#5-what is the average lenght of tracks?
-#6-which artist has more songs?
+#3-what songs have a popularity less than 85%?
 
-6-
+SELECT artist_name, track_name,popularity
+from bit_db.Spotifydata
+where popularity < '85'
+order by popularity asc
+
+#4-what are 10 the more dancable tracks and popularity more than 90?
+
+SELECT artist_name, track_name,popularity,danceability
+from bit_db.Spotifydata
+where popularity > '90'
+order by danceability DESC
+limit 10
+
+#5-what is the average lengTH of tracks?
+
+SELECT avg (duration_ms)
+from bit_db.Spotifydata
+
+#6-which artist has more songs ?
+
