@@ -63,8 +63,9 @@
       JOIN chinook.Tracks t 
       ON i.TrackId = t.TrackId;
 
-#11- 
+# 11- Write a query that includes the purchased track name AND artist name with each invoice line ID.
 
+ 
     
 
 
