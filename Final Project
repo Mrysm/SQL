@@ -56,6 +56,15 @@
      FROM chinook.Invoices
      WHERE InvoiceDate BETWEEN '2009-01-01' AND '2009-12-31';
 
+# 10- Write a query that includes the purchased track name with each invoice line ID.
+
+      SELECT t.Name, i.InvoiceLineId
+      FROM chinook.Invoice_items i
+      JOIN chinook.Tracks t 
+      ON i.TrackId = t.TrackId;
+
+#11- 
+
     
 
 
