@@ -1,0 +1,149 @@
+Overview: 
+
+Myocardial infarction is a synonym for a heart attack. It is a condition where blood flow to the heart muscle is blocked leading the heart to stop. 
+There are many factors that can contribute to the development of this condition. Through this analysis, we will try to gain insight about these factors 
+and try to acknowledge them  to be able to define and quantify the risk of MI. 
+
+Dataset: 
+
+Our dataset includes information about different clinical and non clinical factors. We aim by analyzing relationships between factors to give insights
+and predictions to have more control and awareness about this medical condition. 
+
+Objectives:  
+
+-Explore data and correlation between different factors. 
+-Provide data to professionals to be able to develop tools for prediction of MI. 
+-Provide awareness to communities and to the public about MI . 
+-Encourage different populations to improve their lifestyles. 
+-Include suggestions and recommendations. 
+
+> I used SQLite to run my queries.
+
+1- Start to explore data : Reading the dataset 
+
+SELECT* 
+FROM bit_db.heart 
+LIMIT 5 
+
+#Dataset Frame:  
+There are 303 rows and 14 columns. 
+
+#Check for nulls: 
+
+SELECT* 
+FROM  bit_db.heart 
+WHERE age is NULL AND sex is null and cp is null and trtbps is null and chol is null and fbs is null and restecg is null 
+and thalachh is null and exng is null and oldpeak is null and slp is null and caa is null and thall is null and output is null; 
+
+ #Checking for duplicates:
+
+SELECT  age, chol, trtbps, count(*) as count 
+FROM bit_db.heart 
+GROUP BY  age, chol, trtbps 
+HAVING  count (*)>1; 
+
+2- ANALYSIS: 
+
+#Calculate the average age :  
+
+SELECT  avg (age) 
+FROM  bit_db.heart 
+
+#Determine the proportion of sex :  
+
+SELECT count (sex), sex  
+FROM bit_db.heart 
+GROUP BY  sex 
+
+> 96 of our population are women vs 206 are men. Therefore , men are more than twice as much as women. 
+
+# What is the breakdown of the number of people having different levels of chest pain ? 
+
+SELECT count (*) , cp 
+FROM  bit_db.heart 
+GROUP BY cp 
+
+> Almost 48 % of  people experience  a typical angina related to MI. 45% experience non typical angina pain to non anginal pain. Only 7% are asymptomatic. 
+
+#what is the breakdown of the resting ecg among the database? 
+
+SELECT count(*), restecg 
+FROM  bit_db.heart 
+GROUP BY  restecg 
+
+> 152 people have their ecg showing some ST abnormality, while 147 have normal ecg findings. 2 only are showing left ventricular infarction. 
+
+# How many people are having asymptomatic chest pain and  ecg is showing left ventricular infarction ? 
+
+SELECT cp , restecg , count(*) 
+FROM bit_db.heart 
+WHERE cp = "3" and restecg= "2" 
+
+> There is absolutely no one showing no chest pain symptoms and a definite left ventricular hypertrophy. 
+
+# How many people are having typical pain and an ecg showing  ST abnormalities ? 
+
+SELECT cp , restecg , count(*)				 
+FROM bit_db.heart 
+WHERE cp = "0" and restecg= "1" 
+
+> 62 people will experience typical chest pain and their ecg will show an ST abnormality. 
+While only 3 will experience a typical chest and and ecg showing an infarction. 
+
+# How many people are older than 45 years old and showing an ecg with ST abnormalities ? 
+
+SELECT distinct * 
+FROM bit_db.heart 
+WHERE age >="45" AND restecg = "1" 
+ORDER BY age ASC 
+
+> 114 people are more than 45 years old and having their ecg showing a ST abnormality. 
+
+#How many people less than 45 showing an abnormal ecg with ST abnormalities?  
+
+SELECT distinct * 
+FROM bit_db.heart 
+WHERE age < "45" AND restecg = "1" 
+ORDER BY age ASC 
+
+>  37 people only less than 45 years old are having an abnormal ecg.
+There is high correlation between   age and myocardial infarction. 
+
+# How many people have high cholesterol more than 197 mg/ dl showing an abnormal ecg ? 
+
+SELECT distinct * 
+FROM bit_db.heart 
+WHERE chol > "197" AND restecg = "1" or restecg = "2" 
+ORDER BY chol ASC 
+
+> Almost 43% of people with high cholesterol show an abnormal ecg. 
+
+# How many people have a high fasting blood sugar more than 120 and are experiencing an abnormal ecg ? 
+
+SELECT distinct * 
+FROM bit_db.heart 
+WHERE fbs = "1" AND  restecg = "1"  
+OR  restecg= "2" 
+
+> 23 people with a fasting blood sugar more than 120 mg/dl are having an abnormal ecg. 
+
+# How many people with resting blood pressure of more than 130 are having an abnormal ecg ? 
+
+SELECT distinct * 
+FROM bit_db.heart 
+WHERE  trtbps > "130" AND restecg = "1" 
+OR restecg = "2" 
+
+> 64 people only are experiencing high systolic blood pressure and showing abnormal ECG .  
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
